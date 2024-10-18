@@ -11,18 +11,22 @@
     --soft-blue: #56c2e6;
     --desaturated-blue: #6f76c8;
     --blue: #5847eb;
+    --soft-dark-blue: #34397B;
     --dark-blue: #1c1f4a;
     --very-dark-blue: #0f1424;
     --font-base: 18px;
     --font-xs: 0.834rem;
-    --font-24-40: clamp(1.333rem, 1.1479rem + 1.5023vw, 2.222rem);
-    --font-32-56: clamp(1.777rem, 1.4718rem + 2.2535vw, 3.111rem);
-    --icon-size:clamp(4.5rem, 4.2359rem + 1.1268vw, 5.25rem);
+    --font-24-40: clamp(1.333rem, 1.0203rem + 1.5023vw, 2.222rem);
+    --font-32-56: clamp(1.777rem, 1.3082rem + 2.2535vw, 3.111rem);
     --max-width-container: 61.66rem;
-    --auto-grid-min-size: 14.16rem;
+    --auto-grid-min-size: 14.222rem;
     --space-14: 0.777rem;
     --space-24: 1.333rem;
     --space-32: 1.777rem;
+    --space-14-24: clamp(var(--space-14), 0.5821rem + 0.939vw, var(--space-24));
+    --space-24-32: clamp(var(--space-24), 1.216rem + 0.5634vw, var(--space-32));
+    --space-24-50: clamp(var(--space-24), 0.8247rem + 2.4413vw, 2.777rem);
+    --space-24-82: clamp(var(--space-24), 0.1987rem + 5.446vw, 4.555rem);
     --border-radius: 1rem;
 }
 
@@ -58,13 +62,34 @@ main {
     margin: 6.25rem var(--space-24);
 }
 
+.board__title {
+    color: var(--white);
+    font-size: var(--font-base);
+    font-weight: 500;
+}
+
+.board__title--bg-light {
+    font-size: var(--font-24-40);
+    font-weight: 300;
+}
+
+.board__text {
+    color: var(--pale-blue);
+    font-weight: 400;
+}
+
+.board__text--white { color: var(--white); }
+.board__text--small { font-size: var(--font-xs); }
+.board__text--bg-light {
+    font-size: var(--font-32-56);
+    font-weight: 300;
+}
+
 .board__profile {
     display: flex;
     justify-content: stretch;
-    align-items:center;
     flex-direction: column;
     flex: 1;
-
 }
 
 .board__profile-header {
@@ -73,10 +98,11 @@ main {
     align-items: center;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: var(--space-14);
+    gap: var(--space-14-24);
     width: 100%;
     background-color: var(--blue);
-    padding: var(--space-32) var(--space-24);
+    padding: var(--space-32) var(--space-24-32);
+    padding-block-end: var(--space-24-82);
     border-radius: var(--border-radius);
     margin-block-end: -1rem;
     z-index: 200;
@@ -94,7 +120,8 @@ main {
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
-    padding: calc(var(--space-24) + 1rem) var(--space-24) var(--space-24) var(--space-24);
+    padding: var(--space-24);
+    padding-block-start: calc(var(--space-24) + 1rem);
     background-color: var(--dark-blue);
     border-end-end-radius: var(--border-radius);
     border-end-start-radius: var(--border-radius);
@@ -104,7 +131,10 @@ main {
 .board__nav-link {
     display: block;
     text-decoration: none;
+    color: var(--desaturated-blue);
 }
+
+.board__nav-link--active { color: var(--white); }
 
 .board__item-grid {
     flex: 3;
@@ -116,6 +146,7 @@ main {
 
 .board__item-box {
     width: 100%;
+    height: auto; 
 }
 
 .board__item-cover {
@@ -143,14 +174,13 @@ main {
     position: relative;
     background-color: var(--dark-blue);
     border-radius: var(--border-radius);
-    padding: 1rem;
+    padding: var(--space-24-32);
     margin-block-start: -1rem;
-    z-index: 200;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: var(--space-14);
-    
+    gap: var(--space-14-24);
+    z-index: 200;
 }
 
 .board__item-header, 
@@ -162,32 +192,9 @@ main {
 
 .board__item-info {
     flex-wrap: wrap;
-    margin-block-end: .5rem;
+    gap: 1rem;
+    height: 100%;
 }
-
-.board__title {
-    color: var(--white);
-    font-size: var(--font-base);
-    font-weight: 500;
-}
-
-.board__title--bg-light {
-    font-size: var(--font-24-40);
-    font-weight: 300;
-}
-
-.board__text {
-    color: var(--pale-blue);
-    font-weight: 400;
-}
-
-.board__text--white { color: var(--white); }
-.board__text--small { font-size: var(--font-xs); }
-.board__text--bg-light { 
-    font-size: var(--font-32-56);
-    font-weight: 300;
-}
-
 
 .attribution {
     color: var(--white); 
@@ -196,3 +203,24 @@ main {
 }
 
 .attribution a { color: var(--lime-green); }
+
+@media (min-width: 30.55rem) {
+    .board__profile { max-width: 14.222rem; }
+
+    .board__profile-img { width: 4.66rem; }
+
+    .board__nav {
+        flex-direction: column;
+        gap: var(--space-32);
+    }
+
+    .board__item-content:hover {
+        transition: background-color .5s;
+        background-color: var(--soft-dark-blue);
+    }
+
+    .board__nav-link:not(.board__nav-link--active):hover {
+        transition: color .5s;
+        color: var(--pale-blue);
+    }
+}
