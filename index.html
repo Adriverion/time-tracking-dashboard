@@ -6,6 +6,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/styles.css">
+  <script defer src="./js/script.js" type="module"></script>
   <title>Frontend Mentor | Time tracking dashboard</title>
 </head>
 <body>
@@ -20,9 +21,9 @@
           </div>
         </div>
         <nav class="board__nav">
-          <a class="board__nav-link board__text" href="#">Daily</a>
-          <a class="board__nav-link board__nav-link--active board__text" href="#">Weekly</a>
-          <a class="board__nav-link board__text" href="#">Monthly</a>
+          <a id="day" class="board__nav-link board__text" href="#">Daily</a>
+          <a id="week" class="board__nav-link board__nav-link--active board__text" href="#">Weekly</a>
+          <a id="month" class="board__nav-link board__text" href="#">Monthly</a>
         </nav>
       </section>
       <div class="board__item-grid">
